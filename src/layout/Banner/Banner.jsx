@@ -43,17 +43,17 @@ export default function Banner() {
   };
 
   return (
-    <div className="carousel_banner">
+    <div className="carousel_banner mb-5">
       <div>
         <Carousel
           nextArrow={
             <div>
-              <i className="fa-solid fa-arrow-right"></i>
+              <i className="fa-solid fa-chevron-right"></i>
             </div>
           }
           prevArrow={
             <div>
-              <i className="fa-solid fa-arrow-left"></i>
+              <i className="fa-solid fa-chevron-left"></i>
             </div>
           }
           arrows={true}
@@ -64,35 +64,43 @@ export default function Banner() {
             <div key={index} className="h-screen-70 relative">
               <img className="w-full" src={banner.hinhAnh} alt="" />
               <div className=" absolute inset-0 flex items-center justify-center">
-                <button
-                  className="play-button"
-                  onClick={() => handleOpen(banner.maBanner)}
-                >
-                  <div className="icon_item">
-                    <i class="fa-light fa-play icon_content"></i>
-                  </div>
-                </button>
+                <div className="button_item">
+                  <button
+                    className="play-button"
+                    onClick={() => handleOpen(banner.maBanner)}
+                  >
+                    <div className="icon_item">
+                      <i class="fa-light fa-play icon_content"></i>
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </Carousel>
       </div>
       {currentBannerId && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="relative modal-content">
-            <ReactPlayer
-              url={trailerMovie}
-              playing
-              controls
-              width="800px"
-              height="450px"
-            />
-            <button
-              className="absolute top-2 right-2 text-white"
-              onClick={handleCloseModal}
-            >
-              Close
-            </button>
+        <div className="overlay active">
+          {" "}
+          {/* Thêm lớp overlay khi trailer được mở */}
+          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+            <div className="relative modal-content">
+              <div className="video_item mb-10">
+                <ReactPlayer
+                  url={trailerMovie}
+                  playing
+                  controls
+                  width="800px"
+                  height="450px"
+                />
+                <button
+                  className="absolute top-2 right-2 text-white"
+                  onClick={handleCloseModal}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
